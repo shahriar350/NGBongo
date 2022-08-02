@@ -1,0 +1,30 @@
+<form [formGroup]="form" (ngSubmit)="submit_form()" class="py-4 py-3 w-full shadow rounded">
+  <p class="text-center text-2xl font-medium p-0 m-0">New Shop</p>
+
+  <div class="flex justify-center">
+    <div class="md:w-6/12 sm:w-8/12 w-full">
+      <mat-form-field class="w-full mb-2" appearance="fill">
+        <mat-label>Shop name</mat-label>
+        <input type="text" matInput formControlName="name"
+               [errorStateMatcher]="matcher">
+        <mat-error *ngIf="form.get('name')?.hasError('required')">
+          Please enter your shop name.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="w-full mb-2" appearance="fill">
+        <mat-label>Contact number</mat-label>
+        <input type="text" matInput formControlName="contact_number"
+               [errorStateMatcher]="matcher">
+        <mat-error *ngIf="form.get('contact_number')?.hasError('required')">
+          Please enter shop owner phone number.
+        </mat-error>
+      </mat-form-field>
+      {{form.value.banner}}
+      <input type="file" (change)="file_upload($event)">
+      <mat-error *ngIf="form.get('image')?.hasError('image')">
+        {{form.get("image")?.getError("image")}}
+      </mat-error>
+    </div>
+  </div>
+</form>
